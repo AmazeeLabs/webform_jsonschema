@@ -90,13 +90,18 @@ class Transformer {
         elseif ($item->element['#type'] === 'checkbox') {
           $properties['type'] = 'boolean';
         }
-        elseif ($item->element['#type'] === 'textarea') {
-          $properties['type'] = 'string';
-        }
-        elseif ($item->element['#type'] === 'textfield') {
+        elseif ($item->element['#type'] === 'textfield' || $item->element['#type'] === 'textarea') {
           $properties['type'] = 'string';
           if (isset($item->element['#pattern'])) {
             $properties['pattern'] = $item->element['#pattern'];
+          }
+          if (!empty($item->element['#counter_type']) && !empty($item->element['#counter_type'] == 'character')) {
+            if (!empty($item->element['#counter_minimum'])) {
+              $properties['minLength'] = $item->element['#counter_minimum'];
+            }
+            if (!empty($item->element['#counter_maximum'])) {
+              $properties['maxLength'] = $item->element['#counter_maximum'];
+            }
           }
         }
         elseif ($item->element['#type'] === 'hidden') {
