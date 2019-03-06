@@ -97,10 +97,10 @@ class Transformer {
           }
           if (!empty($item->element['#counter_type']) && !empty($item->element['#counter_type'] == 'character')) {
             if (!empty($item->element['#counter_minimum'])) {
-              $properties['minLength'] = $item->element['#counter_minimum'];
+              $properties['minLength'] = (int)$item->element['#counter_minimum'];
             }
             if (!empty($item->element['#counter_maximum'])) {
-              $properties['maxLength'] = $item->element['#counter_maximum'];
+              $properties['maxLength'] = (int)$item->element['#counter_maximum'];
             }
           }
         }
